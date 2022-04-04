@@ -16,4 +16,5 @@ public class Cot extends Function {
         double cot = 1 / tanFunc.calculate(x);
         return Double.isFinite(cot) ? cot : Double.POSITIVE_INFINITY;
     }
+
 }
