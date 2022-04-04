@@ -23,7 +23,8 @@ public class Ln extends Function {
             return Double.NEGATIVE_INFINITY;
         }
 
-        double currentValue = 0, previousValue;
+        double currentValue = 0;
+        double previousValue;
         int iteration = 1;
 
         if (Math.abs(x - 1) <= 1) {
@@ -42,6 +43,9 @@ public class Ln extends Function {
             currentValue += calculate(x - 1);
         }
 
+        DecimalFormat df = new DecimalFormat("#.#####");
+
         return Double.parseDouble(df.format(currentValue).replace(",", "."));
+
     }
 }
