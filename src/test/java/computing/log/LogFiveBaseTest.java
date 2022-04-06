@@ -17,13 +17,12 @@ public class LogFiveBaseTest {
 
     @BeforeEach
     void setup(){
-        Ln lnFunction = new Ln(ACCURACY);
-        this.logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
+        this.logFiveBase = new LogFiveBase(ACCURACY, LnMockFactory.getLnMock());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/computing/log/log5_test.csv")
-    @DisplayName("Test data from table")
+    @DisplayName("LogFive test data from table")
     public void tableValuesTest(double expected, double num, double den) {
         double actual = logFiveBase.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);

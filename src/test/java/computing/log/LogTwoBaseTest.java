@@ -18,13 +18,12 @@ public class LogTwoBaseTest {
 
     @BeforeEach
     void setup(){
-        Ln lnFunction = new Ln(ACCURACY);
-        this.logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
+        this.logTwoBase = new LogTwoBase(ACCURACY, LnMockFactory.getLnMock());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/computing/log/log2_test.csv")
-    @DisplayName("Test data from table")
+    @DisplayName("LogTwo test data from table")
     public void tableValuesTest(double expected, double num, double den) {
         double actual = logTwoBase.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);
