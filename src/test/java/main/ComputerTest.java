@@ -5,6 +5,8 @@ import computing.trig.Cos;
 import computing.trig.TrigMockFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -18,7 +20,7 @@ public class ComputerTest {
 
     @AfterAll
     static void logInCSV() {
-        CsvLogger csvLogger = new CsvLogger("output/function_results.csv");
+        CsvLogger csvLogger = new CsvLogger("output/computer_result.csv");
         csvLogger.log(computer);
     }
 
@@ -27,8 +29,14 @@ public class ComputerTest {
     public void allStubsTest(double expected, double num, double den) {
         computer = new Computer(ACCURACY, TrigMockFactory.getCotMock(), LnMockFactory.getLnMock(), LnMockFactory.getLogFiveBaseMock(), LnMockFactory.getLogTwoBaseMock());
         double actual = computer.calculate(num * Math.PI / den);
-
         assertEquals(expected, actual, DELTA);
     }
 
+    @Test
+    @DisplayName("Cos negative infinity test")
+    public void negativeInfinityStubsTest() {
+        double expected = Double.NaN;
+        double actual = computer.calculate(Double.NEGATIVE_INFINITY);
+        assertEquals(expected, actual, DELTA);
+    }
 }

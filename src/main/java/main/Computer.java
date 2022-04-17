@@ -23,6 +23,7 @@ public class Computer extends Function {
 
     @Override
     public double calculate(double x) {
+        if (Double.isNaN(x)) return Double.NaN;
         if (x <= 0) {
             return cotFunc.calculate(x);
         } else {
