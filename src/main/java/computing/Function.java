@@ -2,7 +2,7 @@ package computing;
 
 public abstract class Function {
 
-    private double accuracy;
+    private final double accuracy;
 
     public Function(double accuracy) {
         this.accuracy = accuracy;
@@ -12,9 +12,5 @@ public abstract class Function {
 
     public double getAccuracy() {
         return accuracy;
-    }
-
-    public void setAccuracy(double accuracy) {
-        this.accuracy = accuracy;
     }
 }

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LogTwoBaseTest {
 
     private static final double DELTA = 0.05;
-    public static final double ACCURACY = 0.001;
+    private static final double ACCURACY = 0.001;
 
     private LogTwoBase logTwoBase;
 

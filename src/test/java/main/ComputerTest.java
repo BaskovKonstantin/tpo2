@@ -6,8 +6,6 @@ import computing.log.LogFiveBase;
 import computing.log.LogTwoBase;
 import computing.trig.*;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -21,7 +19,7 @@ public class ComputerTest {
 
     @AfterAll
     static void logInCSV() {
-        CsvLogger csvLogger = new CsvLogger("output/computer_result.csv");
+        CsvLogger csvLogger = new CsvLogger("computer_result.csv");
         csvLogger.log(computer);
     }
 

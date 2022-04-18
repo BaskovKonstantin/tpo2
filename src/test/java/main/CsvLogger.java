@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 
 public class CsvLogger {
 
-    private String filePath = "src/test/resources/";
+    private String filePath = "/Users/lubovmakareva/Desktop/";
 
     private final char CSV_SEPARATOR = ',';
     private final int[] numerators = new int[] {1, 1, 1, 2, 3, 5, 1, -1, -1, -3};
@@ -19,16 +19,13 @@ public class CsvLogger {
         this.filePath = filePath + fileName;
     }
 
-    public void setFilePath(String fileName) {
-        this.filePath = "src/test/resources/" + fileName;
-    }
-
     public void log(Computer computer) {
         String csvString = "";
 
         try {
             Files.deleteIfExists(Paths.get(this.filePath));
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         try (PrintStream printStream = new PrintStream(new FileOutputStream(filePath, true))) {

@@ -22,8 +22,6 @@ public class LogFiveBase extends Function {
             return Double.NaN;
         } else if (x == Double.POSITIVE_INFINITY) {
             return Double.POSITIVE_INFINITY;
-        } else if (x == 0.0) {
-            return Double.NEGATIVE_INFINITY;
         }
         return Double.parseDouble(df.format(lnFunc.calculate(x) / lnFunc.calculate(BASE)).replace(",", "."));
     }
