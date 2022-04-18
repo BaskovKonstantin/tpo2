@@ -1,7 +1,6 @@
 package computing.log;
 
 import computing.Function;
-import computing.log.Ln;
 
 import java.text.DecimalFormat;
 

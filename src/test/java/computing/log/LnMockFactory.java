@@ -60,7 +60,6 @@ public class LnMockFactory {
         when(logTwoBaseFunction.calculate(Mockito.eq(3 * Math.PI / 4))).thenReturn(1.23585);
         when(logTwoBaseFunction.calculate(Mockito.eq(5 * Math.PI / 6))).thenReturn(1.38662);
         when(logTwoBaseFunction.calculate(Mockito.eq(1 * Math.PI / 2))).thenReturn(0.65137);
-//        when(logTwoBaseFunction.calculate(Mockito.eq(10.0))).thenReturn(3.32022);
 
         when(logTwoBaseFunction.calculate(Double.POSITIVE_INFINITY)).thenReturn(Double.POSITIVE_INFINITY);
         when(logTwoBaseFunction.calculate(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN);
