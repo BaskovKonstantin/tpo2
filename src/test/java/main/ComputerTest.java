@@ -1,9 +1,6 @@
 package main;
 
-import computing.log.Ln;
-import computing.log.LnMockFactory;
-import computing.log.LogFiveBase;
-import computing.log.LogTwoBase;
+import computing.log.*;
 import computing.trig.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +23,13 @@ public class ComputerTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/main/computer_test.csv")
     public void allStubsTest(double expected, double num, double den) {
-        computer = new Computer(ACCURACY, TrigMockFactory.getCotMock(), LnMockFactory.getLnMock(), LnMockFactory.getLogFiveBaseMock(), LnMockFactory.getLogTwoBaseMock());
+        computer = new Computer(ACCURACY,
+                TrigMockFactory.getSinMock(),
+                LnMockFactory.getLnMock(),
+                LnMockFactory.getLogTenBaseMock(),
+                LnMockFactory.getLogFiveBaseMock(),
+                LnMockFactory.getLogThreeBaseMock(),
+                LnMockFactory.getLogTwoBaseMock());
         double actual = computer.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);
     }
@@ -35,13 +38,13 @@ public class ComputerTest {
     @CsvFileSource(resources = "/main/computer_test.csv")
     public void lnStubTest(double expected, double num, double den) {
         Sin sinFunction = new Sin(ACCURACY);
-        Cos cosFunction = new Cos(ACCURACY, sinFunction);
-        Tan tanFunction = new Tan(ACCURACY, sinFunction, cosFunction);
-        Cot cotFunction = new Cot(ACCURACY, tanFunction);
+
         Ln lnFunction = LnMockFactory.getLnMock();
         LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
+        LogThreeBase logThreeBase = new LogThreeBase(ACCURACY, lnFunction);
         LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
+        LogTenBase logTenBase = new LogTenBase(ACCURACY, lnFunction);
+        computer = new Computer(ACCURACY, sinFunction, lnFunction, logTenBase, logFiveBase, logThreeBase, logTwoBase);
         double actual = computer.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);
     }
@@ -50,53 +53,13 @@ public class ComputerTest {
     @CsvFileSource(resources = "/main/computer_test.csv")
     public void sinStubTest(double expected, double num, double den) {
         Sin sinFunction = TrigMockFactory.getSinMock();
-        Cos cosFunction = new Cos(ACCURACY, sinFunction);
-        Tan tanFunction = new Tan(ACCURACY, sinFunction, cosFunction);
-        Cot cotFunction = new Cot(ACCURACY, tanFunction);
-        Ln lnFunction = new Ln(ACCURACY);
-        LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
-        LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
-        double actual = computer.calculate(num * Math.PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/main/computer_test.csv")
-    public void cosStubTest(double expected, double num, double den) {
-        Sin sinFunction = new Sin(ACCURACY);
-        Cos cosFunction = TrigMockFactory.getCosMock();
-        Tan tanFunction = new Tan(ACCURACY, sinFunction, cosFunction);
-        Cot cotFunction = new Cot(ACCURACY, tanFunction);
         Ln lnFunction = new Ln(ACCURACY);
         LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
+        LogThreeBase logThreeBase = new LogThreeBase(ACCURACY, lnFunction);
         LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
-        double actual = computer.calculate(num * Math.PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/main/computer_test.csv")
-    public void tanStubTest(double expected, double num, double den) {
-        Tan tanFunction = TrigMockFactory.getTanMock();
-        Cot cotFunction = new Cot(ACCURACY, tanFunction);
-        Ln lnFunction = new Ln(ACCURACY);
-        LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
-        LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
-        double actual = computer.calculate(num * Math.PI / den);
-        assertEquals(expected, actual, DELTA);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/main/computer_test.csv")
-    public void cotStubTest(double expected, double num, double den) {
-        Cot cotFunction = TrigMockFactory.getCotMock();
-        Ln lnFunction = new Ln(ACCURACY);
-        LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
-        LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
+        LogTenBase logTenBase = new LogTenBase(ACCURACY, lnFunction);
+        computer = new Computer(ACCURACY, sinFunction, lnFunction, logTenBase, logFiveBase, logThreeBase, logTwoBase);
         double actual = computer.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);
     }
@@ -105,13 +68,13 @@ public class ComputerTest {
     @CsvFileSource(resources = "/main/computer_test.csv")
     public void logTwoStubTest(double expected, double num, double den) {
         Sin sinFunction = new Sin(ACCURACY);
-        Cos cosFunction = new Cos(ACCURACY, sinFunction);
-        Tan tanFunction = new Tan(ACCURACY, sinFunction, cosFunction);
-        Cot cotFunction = new Cot(ACCURACY, tanFunction);
+
         Ln lnFunction = new Ln(ACCURACY);
-        LogTwoBase logTwoBase = LnMockFactory.getLogTwoBaseMock();
+        LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
+        LogThreeBase logThreeBase = new LogThreeBase(ACCURACY, lnFunction);
         LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
+        LogTenBase logTenBase = new LogTenBase(ACCURACY, lnFunction);
+        computer = new Computer(ACCURACY, sinFunction, lnFunction, logTenBase, logFiveBase, logThreeBase, logTwoBase);
         double actual = computer.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);
     }
@@ -120,13 +83,13 @@ public class ComputerTest {
     @CsvFileSource(resources = "/main/computer_test.csv")
     public void logFiveStubTest(double expected, double num, double den) {
         Sin sinFunction = new Sin(ACCURACY);
-        Cos cosFunction = new Cos(ACCURACY, sinFunction);
-        Tan tanFunction = new Tan(ACCURACY, sinFunction, cosFunction);
-        Cot cotFunction = new Cot(ACCURACY, tanFunction);
+
         Ln lnFunction = new Ln(ACCURACY);
         LogTwoBase logTwoBase = new LogTwoBase(ACCURACY, lnFunction);
-        LogFiveBase logFiveBase = LnMockFactory.getLogFiveBaseMock();
-        computer = new Computer(ACCURACY, cotFunction, lnFunction, logFiveBase, logTwoBase);
+        LogThreeBase logThreeBase = new LogThreeBase(ACCURACY, lnFunction);
+        LogFiveBase logFiveBase = new LogFiveBase(ACCURACY, lnFunction);
+        LogTenBase logTenBase = new LogTenBase(ACCURACY, lnFunction);
+        computer = new Computer(ACCURACY, sinFunction, lnFunction, logTenBase, logFiveBase, logThreeBase, logTwoBase);
         double actual = computer.calculate(num * Math.PI / den);
         assertEquals(expected, actual, DELTA);
     }

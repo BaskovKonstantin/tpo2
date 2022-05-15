@@ -1,23 +1,33 @@
 package main;
 
 import computing.Function;
-import computing.log.Ln;
-import computing.log.LogFiveBase;
-import computing.log.LogTwoBase;
-import computing.trig.Cot;
+import computing.log.*;
+import computing.trig.Sin;
 
 public class Computer extends Function {
 
-    private final Cot cotFunc;
+    private final Sin sinFunc;
     private final Ln lnFunc;
+    private final LogTenBase logTenBaseFunc;
     private final LogFiveBase logFiveBaseFunc;
+    private final LogThreeBase logThreeBaseFunc;
     private final LogTwoBase logTwoBaseFunc;
 
-    public Computer(double accuracy, Cot cotFunc, Ln lnFunc, LogFiveBase logFiveBaseFunc, LogTwoBase logTwoBaseFunc) {
+    public Computer(double  accuracy,
+                        Sin cotFunc,
+                        Ln  lnFunc,
+                        LogTenBase logTenBaseFunc,
+                        LogFiveBase logFiveBaseFunc,
+                        LogThreeBase logThreeBaseFunc,
+                        LogTwoBase logTwoBaseFunc
+                        )
+    {
         super(accuracy);
-        this.cotFunc = cotFunc;
+        this.sinFunc = cotFunc;
         this.lnFunc = lnFunc;
+        this.logTenBaseFunc = logTenBaseFunc;
         this.logFiveBaseFunc = logFiveBaseFunc;
+        this.logThreeBaseFunc = logThreeBaseFunc;
         this.logTwoBaseFunc = logTwoBaseFunc;
     }
 
@@ -25,9 +35,11 @@ public class Computer extends Function {
     public double calculate(double x) {
         if (Double.isNaN(x)) return Double.NaN;
         if (x <= 0) {
-            return cotFunc.calculate(x);
+            return
+                    (sinFunc.calculate(x)*sinFunc.calculate(x));
         } else {
-            return Math.pow(((Math.pow(lnFunc.calculate(x), 3)/ lnFunc.calculate(x)) / (logFiveBaseFunc.calculate(x) + logTwoBaseFunc.calculate(x))) * Math.pow((logTwoBaseFunc.calculate(x) + Math.pow(lnFunc.calculate(x),2)),2), 3);
+            return
+                    Math.pow(((Math.pow(lnFunc.calculate(x), 3)/ lnFunc.calculate(x)) / (logFiveBaseFunc.calculate(x) + logTwoBaseFunc.calculate(x))) * Math.pow((logTwoBaseFunc.calculate(x) + Math.pow(lnFunc.calculate(x),2)),2), 3);
         }
     }
 }

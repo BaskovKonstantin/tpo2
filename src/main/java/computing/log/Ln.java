@@ -15,6 +15,7 @@ public class Ln extends Function {
 
     @Override
     public double calculate(double x) {
+
         if (Double.isNaN(x) || x < 0.0) {
             return Double.NaN;
         } else if (x == Double.POSITIVE_INFINITY) {

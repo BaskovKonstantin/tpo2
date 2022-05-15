@@ -30,6 +30,25 @@ public class LnMockFactory {
         return lnFunction;
     }
 
+    public static LogTenBase getLogTenBaseMock() {
+        LogTenBase logTenBaseFunction = mock(LogTenBase.class);
+
+        when(logTenBaseFunction.calculate(Mockito.eq(1 * Math.PI / 6))).thenReturn(-0.28100);
+        when(logTenBaseFunction.calculate(Mockito.eq(1 * Math.PI / 4))).thenReturn(-0.10491);
+        when(logTenBaseFunction.calculate(Mockito.eq(1 * Math.PI / 3))).thenReturn(0.02002);
+        when(logTenBaseFunction.calculate(Mockito.eq(2 * Math.PI / 3))).thenReturn(0.32105);
+        when(logTenBaseFunction.calculate(Mockito.eq(3 * Math.PI / 4))).thenReturn(0.37221);
+        when(logTenBaseFunction.calculate(Mockito.eq(5 * Math.PI / 6))).thenReturn(0.41796);
+        when(logTenBaseFunction.calculate(Mockito.eq(1 * Math.PI / 2))).thenReturn(0.19611);
+        when(logTenBaseFunction.calculate(Mockito.eq(5))).thenReturn(0.69897);
+
+        when(logTenBaseFunction.calculate(Double.POSITIVE_INFINITY)).thenReturn(Double.POSITIVE_INFINITY);
+        when(logTenBaseFunction.calculate(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN);
+        when(logTenBaseFunction.calculate(Double.NaN)).thenReturn(Double.NaN);
+
+        return logTenBaseFunction;
+    }
+
     public static LogFiveBase getLogFiveBaseMock() {
         LogFiveBase logFiveBaseFunction = mock(LogFiveBase.class);
 
@@ -47,6 +66,25 @@ public class LnMockFactory {
         when(logFiveBaseFunction.calculate(Double.NaN)).thenReturn(Double.NaN);
 
         return logFiveBaseFunction;
+    }
+
+    public static LogThreeBase getLogThreeBaseMock() {
+        LogThreeBase logThreeBaseFunction = mock(LogThreeBase.class);
+
+        when(logThreeBaseFunction.calculate(Mockito.eq(1 * Math.PI / 6))).thenReturn(-0.58895);
+        when(logThreeBaseFunction.calculate(Mockito.eq(1 * Math.PI / 4))).thenReturn(-0.21988);
+        when(logThreeBaseFunction.calculate(Mockito.eq(1 * Math.PI / 3))).thenReturn(0.04197);
+        when(logThreeBaseFunction.calculate(Mockito.eq(2 * Math.PI / 3))).thenReturn(0.67290);
+        when(logThreeBaseFunction.calculate(Mockito.eq(3 * Math.PI / 4))).thenReturn(0.78011);
+        when(logThreeBaseFunction.calculate(Mockito.eq(5 * Math.PI / 6))).thenReturn(0.87602);
+        when(logThreeBaseFunction.calculate(Mockito.eq(1 * Math.PI / 2))).thenReturn(0.41104);
+        when(logThreeBaseFunction.calculate(Mockito.eq(5))).thenReturn(1.46497);
+
+        when(logThreeBaseFunction.calculate(Double.POSITIVE_INFINITY)).thenReturn(Double.POSITIVE_INFINITY);
+        when(logThreeBaseFunction.calculate(Double.NEGATIVE_INFINITY)).thenReturn(Double.NaN);
+        when(logThreeBaseFunction.calculate(Double.NaN)).thenReturn(Double.NaN);
+
+        return logThreeBaseFunction;
     }
 
     public static LogTwoBase getLogTwoBaseMock() {
